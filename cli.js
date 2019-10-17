@@ -142,7 +142,7 @@ function cmdSync() {
 function uploadGetS3Params(filePath, stat, callback) {
   //console.error("Uploading", filePath);
   callback(null, {
-    ContentType: getContentType(),
+    ContentType: getContentType(filePath),
   });
 }
 
@@ -229,7 +229,7 @@ function cmdPut() {
     Bucket: parts.bucket,
     Key: parts.key,
     ACL: acl,
-    ContentType: getContentType(),
+    ContentType: getContentType(filePath),
   };
   parseAddHeaders(s3Params);
   var params = {
@@ -336,8 +336,14 @@ function isS3Url(str) {
   return s3UrlRe.test(str);
 }
 
-function getContentType() {
-  return args['no-guess-mime-type'] ? null : undefined;
+function getContentType(filePath) {
+  if (args['no-guess-mimetype']) {
+     return null;
+  } else if(filePath.endsWith('woff2')) {
+     return 'font/woff2';
+  } else {
+    return undefined;
+  }
 }
 
 function getDefaultContentType() {
@@ -484,3 +490,4 @@ function unixSplitPath(filename) {
 function unixBasename(path) {
   return unixSplitPath(path)[2];
 }
+
