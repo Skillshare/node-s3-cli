@@ -1,12 +1,12 @@
 {
-  "name": "s3-cli",
+  "name": "@skillshare/s3-cli",
   "version": "0.14.0",
   "description": "command line utility to go along with s3 module",
   "main": "index.js",
   "bin": {
     "s3-cli": "./cli.js"
   },
-  "author": "Andrew Kelley <superjoe30@gmail.com>",
+  "author": "Adam Hawkins <adam@skillshare.com>",
   "license": "MIT",
   "dependencies": {
     "ini": "~1.2.1",
@@ -21,10 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/andrewrk/node-s3-cli.git"
+    "url": "git://github.com/skillshare/node-s3-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/andrewrk/node-s3-cli/issues"
+    "url": "https://github.com/skillshare/node-s3-cli/issues"
   },
-  "homepage": "https://github.com/andrewrk/node-s3-cli"
+  "homepage": "https://github.com/skillshare/node-s3-cli"
 }
