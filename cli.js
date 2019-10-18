@@ -337,7 +337,7 @@ function isS3Url(str) {
 }
 
 function getContentType(filePath) {
-  if (args['no-guess-mimetype']) {
+  if (args['no-guess-mime-type']) {
      return null;
   } else if(filePath.endsWith('woff2')) {
      return 'font/woff2';
