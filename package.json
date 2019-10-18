@@ -1,6 +1,6 @@
 {
   "name": "@skillshare/s3-cli",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "command line utility to go along with s3 module",
   "main": "index.js",
   "bin": {
