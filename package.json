@@ -27,8 +27,5 @@
   "bugs": {
     "url": "https://github.com/skillshare/node-s3-cli/issues"
   },
- "homepage": "https://github.com/skillshare/node-s3-cli",
-  "resolutions": {
-    "graceful-fs": "^4.2.4"
-  }
+  "homepage": "https://github.com/skillshare/node-s3-cli"
 }
