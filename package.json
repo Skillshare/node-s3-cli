@@ -1,6 +1,6 @@
 {
   "name": "@skillshare/s3-cli",
-  "version": "0.14.1",
+  "version": "0.15.0-rc1",
   "description": "command line utility to go along with s3 module",
   "main": "index.js",
   "bin": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "cli": "./cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/skillshare/node-s3-cli/issues"
   },
-  "homepage": "https://github.com/skillshare/node-s3-cli"
+ "homepage": "https://github.com/skillshare/node-s3-cli",
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
+  }
 }
