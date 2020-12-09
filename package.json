@@ -1,6 +1,6 @@
 {
   "name": "@skillshare/s3-cli",
-  "version": "0.14.1",
+  "version": "0.15.0",
   "description": "command line utility to go along with s3 module",
   "main": "index.js",
   "bin": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "cli": "./cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
