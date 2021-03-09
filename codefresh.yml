@@ -20,5 +20,5 @@ steps:
     type: build
     registry: utility
     working_directory: ${{clone}}
-    image_name: skillshare/${{CF_REPO_NAME}}
+    image_name: skillshare/s3-cli
     tag: ${{CF_BUILD_ID}}
