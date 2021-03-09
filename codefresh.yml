@@ -44,14 +44,7 @@ steps:
     working_directory: ${{clone}}
     image_name: skillshare/s3-cli
     tag: ${{CF_BUILD_ID}}
-
-  yarn_install:
-    stage: build
-    title: Yarn install
-    image: node:10-alpine
-    working_directory: ${{clone}}
-    commands:
-      - yarn install
+    disable_push: true
 
   create_artifact:
     stage: build
@@ -63,8 +56,8 @@ steps:
   test_instance_profile:
     stage: test
     title: Access Keys
-    image: node:10-alpine
-    working_directory: ${{clone}}
+    image: ${{build}}
+    working_directory: /usr/src/app
     commands:
       - test -z "${AWS_ACCESS_KEY_ID}"
       - test -z "${AWS_SECRET_ACCESS_KEY}"
