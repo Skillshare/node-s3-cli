@@ -1,0 +1,24 @@
+version: "2"
+fail_fast: true
+
+stages:
+  - build
+  - test
+
+steps:
+  clone:
+    stage: build
+    title: Clone
+    type: git-clone
+    repo: ${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}
+    revision: ${{CF_REVISION}}
+    git: github
+
+  build:
+    stage: build
+    title: Build
+    type: build
+    registry: utility
+    working_directory: ${{clone}}
+    image_name: skillshare/${{CF_REPO_NAME}}
+    tag: ${{CF_BUILD_ID}}
