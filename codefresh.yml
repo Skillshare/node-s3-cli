@@ -57,6 +57,10 @@ steps:
     image: node:10-alpine
     working_directory: ${{clone}}
     commands:
+      - test -z "${AWS_ACCESS_KEY_ID}"
+      - test -z "${AWS_SECRET_ACCESS_KEY}"
+      - test -z "${AWS_ACCESS_KEY}"
+      - test -z "${AWS_SECRET_KEY}"
       - yarn run cli sync "${SK_ARTIFACTS_PATH}" "s3://${SK_ARTIFACTS_BUCKET}/${CF_PIPELINE_NAME}/${CF_BUILD_ID}/"
 
   # build:
