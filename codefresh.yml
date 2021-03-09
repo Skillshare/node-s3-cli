@@ -11,7 +11,7 @@ hooks:
     steps:
       artifacts_config_check:
         title: Check config
-        image: alpine:3.12
+        image: alpine:3.10
         commands:
           - test -n "${SK_ARTIFACTS_BUCKET}"
         environment:
@@ -19,7 +19,7 @@ hooks:
 
 steps:
   create_artifacts_directory:
-    image: alpine:3.12
+    image: alpine:3.10
     stage: build
     title: Create artifacts directory
     environment:
@@ -39,7 +39,7 @@ steps:
   yarn_install:
     stage: build
     title: Yarn install
-    image: node:12-alpine
+    image: node:10-alpine
     working_directory: ${{clone}}
     commands:
       - yarn install
@@ -47,14 +47,14 @@ steps:
   create_artifact:
     stage: build
     title: Create artifact
-    image: node:12-alpine
+    image: node:10-alpine
     commands:
       - echo "Hello world from ${CF_BUILD_ID}" > "${SK_ARTIFACTS_DIR}/sentinel.txt"
 
   test:
     stage: test
     title: Access Keys
-    image: node:12-alpine
+    image: node:10-alpine
     working_directory: ${{clone}}
     commands:
       - yarn run cli "${SK_ARTIFACTS_DIR}" "s3://${SK_ARTIFACTS_BUCKET}"
