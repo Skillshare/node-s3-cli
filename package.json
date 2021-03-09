@@ -9,15 +9,15 @@
   "author": "Adam Hawkins <adam@skillshare.com>",
   "license": "MIT",
   "dependencies": {
+    "human-size": "~1.1.0",
     "ini": "~1.2.1",
     "minimist": "~1.1.0",
     "osenv": "~0.1.0",
-    "s3": "~4.2.0",
-    "human-size": "~1.1.0"
+    "s3": "~4.2.0"
   },
-  "devDependencies": {},
   "scripts": {
     "cli": "./cli.js",
+    "manifest": "./manifest.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
