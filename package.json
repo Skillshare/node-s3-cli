@@ -9,6 +9,7 @@
   "author": "Adam Hawkins <adam@skillshare.com>",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.860.0",
     "human-size": "~1.1.0",
     "ini": "~1.2.1",
     "minimist": "~1.1.0",

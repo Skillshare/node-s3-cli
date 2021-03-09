@@ -7,6 +7,7 @@ var ini = require('ini');
 var fs = require('fs');
 var path = require('path');
 var s3 = require('s3');
+var AWS = require('aws-sdk');
 var url = require('url');
 var http = require('http');
 var https = require('https');
@@ -60,10 +61,9 @@ function setup() {
   http.globalAgent.maxSockets = maxSockets;
   https.globalAgent.maxSockets = maxSockets;
   client = s3.createClient({
-    s3Options: {
-      sslEnabled: !args.insecure,
+    s3Client: new AWS.S3({
       region: args.region
-    },
+    })
   });
   var cmd = args._.shift();
   var fn = fns[cmd];
