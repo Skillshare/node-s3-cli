@@ -11,7 +11,7 @@ hooks:
     steps:
       artifacts_config_check:
         title: Check config
-        image: alpine:3.10
+        image: alpine:3.12
         commands:
           - test -n "${SK_ARTIFACTS_BUCKET}"
         environment:
