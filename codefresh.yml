@@ -10,7 +10,6 @@ hooks:
     fail_fast: true
     steps:
       artifacts_config_check:
-        stage: prepare
         title: Check config
         image: alpine:3.10
         commands:
