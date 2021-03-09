@@ -49,7 +49,7 @@ steps:
     title: Create artifact
     image: node:10-alpine
     commands:
-      - echo "Hello world from ${CF_BUILD_ID}" > "${SK_ARTIFACTS_DIR}/sentinel.txt"
+      - echo "Hello world from ${CF_BUILD_ID}" > "${SK_ARTIFACTS_PATH}/sentinel.txt"
 
   test:
     stage: test
@@ -57,7 +57,7 @@ steps:
     image: node:10-alpine
     working_directory: ${{clone}}
     commands:
-      - yarn run cli "${SK_ARTIFACTS_DIR}" "s3://${SK_ARTIFACTS_BUCKET}"
+      - yarn run cli sync "${SK_ARTIFACTS_PATH}" "s3://${SK_ARTIFACTS_BUCKET}"
 
   # build:
   #   stage: build
