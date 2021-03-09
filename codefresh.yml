@@ -5,7 +5,30 @@ stages:
   - build
   - test
 
+hooks:
+  on_elected:
+    fail_fast: true
+    steps:
+      artifacts_config_check:
+        stage: prepare
+        title: Check config
+        image: alpine:3.10
+        commands:
+          - test -n "${SK_ARTIFACTS_BUCKET}"
+        environment:
+          - SK_ARTIFACTS_BUCKET=${{SK_ARTIFACTS_BUCKET}}
+
 steps:
+  create_artifacts_directory:
+    image: alpine:3.12
+    stage: build
+    title: Create artifacts directory
+    environment:
+      - SK_ARTIFACTS_PATH=${{CF_VOLUME_PATH}}/artifacts/${{CF_BUILD_ID}}
+    commands:
+      - mkdir -p ${SK_ARTIFACTS_PATH}
+      - cf_export SK_ARTIFACTS_PATH=${SK_ARTIFACTS_PATH}
+
   clone:
     stage: build
     title: Clone
@@ -14,11 +37,34 @@ steps:
     revision: ${{CF_REVISION}}
     git: github
 
-  build:
+  yarn_install:
     stage: build
-    title: Build
-    type: build
-    registry: utility
+    title: Yarn install
+    image: node:14-alpine
     working_directory: ${{clone}}
-    image_name: skillshare/s3-cli
-    tag: ${{CF_BUILD_ID}}
+    commands:
+      - yarn install
+
+  create_artifact:
+    stage: build
+    title: Create artifact
+    image: node:14-alpine
+    commands:
+      - echo "Hello world from ${CF_BUILD_ID}" > "${SK_ARTIFACTS_DIR}/sentinel.txt"
+
+  test:
+    stage: test
+    title: Access Keys
+    image: node:14-alpine
+    working_directory: ${{clone}}
+    commands:
+      - yarn run cli "${SK_ARTIFACTS_DIR}" "s3://${SK_ARTIFACTS_BUCKET}"
+
+  # build:
+  #   stage: build
+  #   title: Build
+  #   type: build
+  #   registry: utility
+  #   working_directory: ${{clone}}
+  #   image_name: skillshare/s3-cli
+  #   tag: ${{CF_BUILD_ID}}
